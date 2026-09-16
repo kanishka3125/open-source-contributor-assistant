@@ -117,38 +117,51 @@ The retrieved context is provided to an LLM, which generates an answer grounded 
 
 The system is instructed not to invent information when the repository does not contain enough evidence.
 
-💬 Example Questions
+## 💬 Example Questions
 
 The assistant can answer questions such as:
 
-Where is JWT authentication implemented?
-How does the login system work?
-Which file handles database connections?
-When was the payment module added?
-Who contributed to the authentication module?
-What changed in the latest commits?
-Show the evolution of a particular module.
-Where is a specific function defined?
-🛠️ Tech Stack
-Backend
-Python
-FastAPI
-GitPython
-AI / ML
-Sentence Transformers / BGE
-Retrieval-Augmented Generation (RAG)
-LLMs such as GPT, Llama, or Qwen
-Vector Database
-ChromaDB
-Qdrant
-Frontend
-React / Next.js
-Tailwind CSS
-Development & Deployment
-Git
-GitHub
-Docker
-📁 Project Structure
+- Where is JWT authentication implemented?
+- How does the login system work?
+- Which file handles database connections?
+- When was the payment module added?
+- Who contributed to the authentication module?
+- What changed in the latest commits?
+- Show the evolution of a particular module.
+- Where is a specific function defined?
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+- Python
+- FastAPI
+- GitPython
+
+### AI / ML
+- Sentence Transformers / BGE
+- Retrieval-Augmented Generation (RAG)
+- LLMs such as GPT, Llama, or Qwen
+
+### Vector Database
+- ChromaDB
+- Qdrant
+
+### Frontend
+- React / Next.js
+- Tailwind CSS
+
+### Development & Deployment
+- Git
+- GitHub
+- Docker
+
+---
+
+## 📁 Project Structure
+
+```text
 open-source-contributor-assistant/
 │
 ├── backend/
@@ -172,16 +185,17 @@ open-source-contributor-assistant/
 ├── README.md
 ├── .gitignore
 └── docker-compose.yml
+```
 🔌 API Endpoints
 Process Repository
 POST /api/process
 
 Request:
-
+```
 {
   "repo_url": "https://github.com/owner/repository"
 }
-
+```
 This endpoint:
 
 Validates the repository URL
@@ -194,22 +208,23 @@ Chat
 POST /api/chat
 
 Request:
-
+```
 {
   "question": "Where is authentication implemented?"
 }
-
+```
 The endpoint retrieves relevant repository context and generates an AI-powered response.
 
 ⚙️ Local Setup
+```
 Clone the repository
 git clone https://github.com/YOUR_USERNAME/open-source-contributor-assistant.git
 cd open-source-contributor-assistant
 Create a virtual environment
 python -m venv venv
-
+```
 Activate it on Windows:
-
+```
 venv\Scripts\activate
 Install backend dependencies
 cd backend
@@ -232,6 +247,7 @@ http://localhost:8000
 FastAPI documentation:
 
 http://localhost:8000/docs
+```
 🧪 Testing
 
 The backend can be tested using:
@@ -259,11 +275,13 @@ Automatic documentation generation
 Architecture visualization
 Multi-repository support
 VS Code extension
+
 👥 Team
-Member	Responsibility
-Person A	Frontend & API Integration
-Person B	Backend & Repository Processing
-Person C	AI / RAG Pipeline
+```
+Hritika Roy - Frontend & API Integration
+Kanishka Sharma - Backend & Repository Processing
+Hari Pooreni Balaji - AI / RAG Pipeline
+```
 📌 Project Status
 
 🚧 Currently under development
