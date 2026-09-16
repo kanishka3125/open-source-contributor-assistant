@@ -68,18 +68,14 @@ app = FastAPI(
 # ---------------------------------------------------------------------------
 # CORS
 # ---------------------------------------------------------------------------
-_raw_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000")
-allowed_origins = [origin.strip() for origin in _raw_origins.split(",") if origin.strip()]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-logger.info("CORS allowed origins: %s", allowed_origins)
 
 # ---------------------------------------------------------------------------
 # Routers
