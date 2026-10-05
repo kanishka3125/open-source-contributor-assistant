@@ -9,7 +9,9 @@ import {
   IconFolder,
   IconCheckCircle2,
   IconArrowRight,
+  IconTerminal,
 } from "./Icons";
+import TiltCard from "./TiltCard";
 
 export default function OverviewTab({ repoData, onNavigateTab }) {
   if (!repoData) {
@@ -56,8 +58,8 @@ export default function OverviewTab({ repoData, onNavigateTab }) {
             className="action-pill primary"
             onClick={() => onNavigateTab("chat")}
           >
-            <IconSparkles size={15} />
-            <span>Ask Repository AI</span>
+            <IconTerminal size={15} />
+            <span>Ask Repository Q&A</span>
           </button>
           <button
             type="button"
@@ -70,40 +72,46 @@ export default function OverviewTab({ repoData, onNavigateTab }) {
         </div>
       </div>
 
-      {/* Real Statistics Cards */}
+      {/* Real Statistics Cards with 3D Depth */}
       <div className="stats-grid">
-        <div className="stat-metric-card cyan-glow">
-          <div className="stat-card-header">
-            <span className="stat-card-title">SOURCE FILES</span>
-            <div className="stat-icon-wrapper cyan">
-              <IconFile size={18} />
+        <TiltCard maxTilt={8} scale={1.02} className="stat-tilt-frame">
+          <div className="stat-metric-card">
+            <div className="stat-card-header">
+              <span className="stat-card-title">SOURCE FILES</span>
+              <div className="stat-icon-wrapper neutral">
+                <IconFile size={18} />
+              </div>
             </div>
+            <div className="stat-card-value">{filesCount.toLocaleString()}</div>
+            <p className="stat-card-hint">Parsed and structured for search</p>
           </div>
-          <div className="stat-card-value">{filesCount.toLocaleString()}</div>
-          <p className="stat-card-hint">Parsed and structured for search</p>
-        </div>
+        </TiltCard>
 
-        <div className="stat-metric-card purple-glow">
-          <div className="stat-card-header">
-            <span className="stat-card-title">GIT COMMITS</span>
-            <div className="stat-icon-wrapper purple">
-              <IconGitCommit size={18} />
+        <TiltCard maxTilt={8} scale={1.02} className="stat-tilt-frame">
+          <div className="stat-metric-card">
+            <div className="stat-card-header">
+              <span className="stat-card-title">GIT COMMITS</span>
+              <div className="stat-icon-wrapper neutral">
+                <IconGitCommit size={18} />
+              </div>
             </div>
+            <div className="stat-card-value">{commitsCount.toLocaleString()}</div>
+            <p className="stat-card-hint">Historical revisions extracted</p>
           </div>
-          <div className="stat-card-value">{commitsCount.toLocaleString()}</div>
-          <p className="stat-card-hint">Historical revisions extracted</p>
-        </div>
+        </TiltCard>
 
-        <div className="stat-metric-card blue-glow">
-          <div className="stat-card-header">
-            <span className="stat-card-title">KNOWLEDGE CHUNKS</span>
-            <div className="stat-icon-wrapper blue">
-              <IconLayers size={18} />
+        <TiltCard maxTilt={8} scale={1.02} className="stat-tilt-frame">
+          <div className="stat-metric-card">
+            <div className="stat-card-header">
+              <span className="stat-card-title">KNOWLEDGE CHUNKS</span>
+              <div className="stat-icon-wrapper neutral">
+                <IconLayers size={18} />
+              </div>
             </div>
+            <div className="stat-card-value">{chunksCount.toLocaleString()}</div>
+            <p className="stat-card-hint">Searchable chunks indexed</p>
           </div>
-          <div className="stat-card-value">{chunksCount.toLocaleString()}</div>
-          <p className="stat-card-hint">Granular units indexed for AI</p>
-        </div>
+        </TiltCard>
       </div>
 
       {/* Architecture & Visual Structure Map */}
@@ -168,43 +176,49 @@ export default function OverviewTab({ repoData, onNavigateTab }) {
         <div className="overview-panel">
           <div className="panel-header">
             <div className="panel-title-group">
-              <IconSparkles size={18} className="text-pink" />
-              <h3>Intelligence Capabilities</h3>
+              <IconTerminal size={18} />
+              <h3>Capabilities</h3>
             </div>
           </div>
           <div className="capabilities-list">
-            <div className="capability-card" onClick={() => onNavigateTab("chat")}>
-              <div className="cap-icon-box pink">
-                <IconSparkles size={16} />
+            <TiltCard maxTilt={5} scale={1.015} className="cap-tilt-wrapper" onClick={() => onNavigateTab("chat")}>
+              <div className="capability-card">
+                <div className="cap-icon-box neutral">
+                  <IconTerminal size={16} />
+                </div>
+                <div className="cap-content">
+                  <h4>Natural Language Code Q&A</h4>
+                  <p>Query codebase architecture, functions, and workflows directly.</p>
+                </div>
+                <IconArrowRight size={14} className="cap-arrow" />
               </div>
-              <div className="cap-content">
-                <h4>Natural Language Question Answering</h4>
-                <p>Query codebase architecture, functions, and workflows directly.</p>
-              </div>
-              <IconArrowRight size={14} className="cap-arrow" />
-            </div>
+            </TiltCard>
 
-            <div className="capability-card" onClick={() => onNavigateTab("commits")}>
-              <div className="cap-icon-box purple">
-                <IconGitCommit size={16} />
+            <TiltCard maxTilt={5} scale={1.015} className="cap-tilt-wrapper" onClick={() => onNavigateTab("commits")}>
+              <div className="capability-card">
+                <div className="cap-icon-box neutral">
+                  <IconGitCommit size={16} />
+                </div>
+                <div className="cap-content">
+                  <h4>Commit Evolution Timeline</h4>
+                  <p>Trace when features were merged and inspect change history.</p>
+                </div>
+                <IconArrowRight size={14} className="cap-arrow" />
               </div>
-              <div className="cap-content">
-                <h4>Commit Evolution Timeline</h4>
-                <p>Trace when features were merged and inspect change history.</p>
-              </div>
-              <IconArrowRight size={14} className="cap-arrow" />
-            </div>
+            </TiltCard>
 
-            <div className="capability-card" onClick={() => onNavigateTab("code")}>
-              <div className="cap-icon-box cyan">
-                <IconCode size={16} />
+            <TiltCard maxTilt={5} scale={1.015} className="cap-tilt-wrapper" onClick={() => onNavigateTab("code")}>
+              <div className="capability-card">
+                <div className="cap-icon-box neutral">
+                  <IconCode size={16} />
+                </div>
+                <div className="cap-content">
+                  <h4>Source Tree & File Viewer</h4>
+                  <p>Browse directories and inspect source files with line highlighting.</p>
+                </div>
+                <IconArrowRight size={14} className="cap-arrow" />
               </div>
-              <div className="cap-content">
-                <h4>VS Code-Style Source Viewer</h4>
-                <p>Browse directories and inspect source files with line highlighting.</p>
-              </div>
-              <IconArrowRight size={14} className="cap-arrow" />
-            </div>
+            </TiltCard>
           </div>
         </div>
       </div>

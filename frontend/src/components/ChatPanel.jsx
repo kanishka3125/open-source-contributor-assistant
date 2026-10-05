@@ -171,12 +171,12 @@ export default function ChatPanel({
       <div className="chat-panel-header">
         <div className="chat-header-title-box">
           <div className="chat-ai-badge">
-            <IconSparkles size={14} className="text-pink" />
-            <span>AI Copilot</span>
+            <IconTerminal size={14} />
+            <span>Repository Q&A</span>
           </div>
           <h2 className="chat-heading">Ask Your Repository</h2>
           <p className="chat-subheading">
-            Understand code, architecture, commits, and documentation.
+            Inspect implementation, architecture, commits, and documentation.
           </p>
         </div>
 
@@ -213,7 +213,7 @@ export default function ChatPanel({
                   onClick={() => handleSelectSuggested(item)}
                   disabled={isThinking}
                 >
-                  <IconSparkles size={12} className="text-pink" />
+                  <IconTerminal size={12} />
                   <span>{item}</span>
                 </button>
               ))}
@@ -233,7 +233,7 @@ export default function ChatPanel({
               >
                 {!isUser && (
                   <div className="avatar-box assistant-avatar">
-                    <IconSparkles size={16} />
+                    <IconTerminal size={15} />
                   </div>
                 )}
 
@@ -288,7 +288,7 @@ export default function ChatPanel({
           {isThinking && (
             <div className="message-bubble-row assistant-row">
               <div className="avatar-box assistant-avatar">
-                <IconSparkles size={16} />
+                <IconTerminal size={15} />
               </div>
               <div className="message-bubble assistant-bubble thinking-bubble">
                 <div className="thinking-dots">

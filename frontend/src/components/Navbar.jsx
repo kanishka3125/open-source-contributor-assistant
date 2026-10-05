@@ -1,4 +1,4 @@
-import { IconGithub, IconExternalLink, IconCommand, IconSearch, IconSparkles, IconSun, IconMoon } from "./Icons";
+import { IconGithub, IconExternalLink, IconCommand, IconSearch, IconTerminal, IconSun, IconMoon } from "./Icons";
 
 export default function Navbar({
   repoData,
@@ -14,7 +14,7 @@ export default function Navbar({
     { id: "code", label: "Code" },
     { id: "commits", label: "Commits" },
     { id: "contributors", label: "Contributors" },
-    { id: "chat", label: "Ask AI", isAi: true },
+    { id: "chat", label: "Q&A" },
   ];
 
   return (
@@ -24,11 +24,11 @@ export default function Navbar({
         <div className="navbar-left">
           <button type="button" className="brand-logo-btn" onClick={onBackToHome}>
             <div className="brand-icon-box">
-              <IconSparkles size={18} className="brand-sparkle" />
+              <IconTerminal size={17} />
             </div>
             <div className="brand-text">
-              <span className="brand-name">RepoIntel</span>
-              <span className="brand-tag">v1.0</span>
+              <span className="brand-name">Contributor Assistant</span>
+              <span className="brand-tag">OSS</span>
             </div>
           </button>
 
@@ -48,10 +48,9 @@ export default function Navbar({
               <button
                 key={tab.id}
                 type="button"
-                className={`nav-tab-btn ${activeTab === tab.id ? "is-active" : ""} ${tab.isAi ? "ai-tab" : ""}`}
+                className={`nav-tab-btn ${activeTab === tab.id ? "is-active" : ""}`}
                 onClick={() => setActiveTab(tab.id)}
               >
-                {tab.isAi && <IconSparkles size={13} className="tab-ai-icon" />}
                 <span>{tab.label}</span>
               </button>
             ))}

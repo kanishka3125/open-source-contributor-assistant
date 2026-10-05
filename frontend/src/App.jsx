@@ -2,16 +2,18 @@ import { useState, useEffect } from "react";
 import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 import CommandPalette from "./components/CommandPalette";
+import IntroPage from "./components/IntroPage";
 
 function App() {
-  const [page, setPage] = useState("home");
+  // Default to the cinematic intro experience
+  const [page, setPage] = useState("intro");
   const [repoData, setRepoData] = useState(null);
   const [activeTab, setActiveTab] = useState("overview");
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [prefilledQuestion, setPrefilledQuestion] = useState("");
   const [theme, setTheme] = useState(() => {
     const stored = localStorage.getItem("repointel-theme");
-    return stored === "light" ? "light" : "dark";
+    return stored === "dark" ? "dark" : "light";
   });
 
   // Apply theme to <html> data attribute whenever it changes
@@ -35,6 +37,11 @@ function App() {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
+
+  const handleEnterApp = () => {
+    sessionStorage.setItem("repointel-intro-seen", "1");
+    setPage("home");
+  };
 
   const handleProcessSuccess = (data, question = "") => {
     setRepoData(data);
@@ -62,13 +69,17 @@ function App() {
 
   return (
     <div className="app-root">
-      {page === "home" ? (
-        <Home
-          onProcessSuccess={handleProcessSuccess}
-          onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
-          theme={theme}
-          onToggleTheme={toggleTheme}
-        />
+      {page === "intro" ? (
+        <IntroPage onEnter={handleEnterApp} />
+      ) : page === "home" ? (
+        <div className="app-page-enter">
+          <Home
+            onProcessSuccess={handleProcessSuccess}
+            onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
+            theme={theme}
+            onToggleTheme={toggleTheme}
+          />
+        </div>
       ) : (
         <Dashboard
           repoData={repoData}

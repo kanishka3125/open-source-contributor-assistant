@@ -5,6 +5,7 @@ import AnalysisProgress from "./AnalysisProgress";
 import HowItWorks from "./HowItWorks";
 import ExampleQuestions from "./ExampleQuestions";
 import Navbar from "./Navbar";
+import TiltCard from "./TiltCard";
 import { processRepository } from "../services/api";
 
 export default function Home({ onProcessSuccess, onOpenCommandPalette, theme, onToggleTheme }) {
@@ -71,11 +72,8 @@ export default function Home({ onProcessSuccess, onOpenCommandPalette, theme, on
       />
 
       <main className="landing-main-content">
-        {/* Hero Section */}
-        <Hero />
-
-        {/* Input or Live Processing Card */}
-        <div className="landing-action-container">
+        {/* Immersive 3D Showcase Hero Section */}
+        <Hero theme={theme}>
           {isLoading ? (
             <AnalysisProgress
               repoUrl={repoUrl}
@@ -83,16 +81,18 @@ export default function Home({ onProcessSuccess, onOpenCommandPalette, theme, on
               realStats={processingResult}
             />
           ) : (
-            <RepoInput
-              repoUrl={repoUrl}
-              setRepoUrl={setRepoUrl}
-              onSubmit={handleProcess}
-              isLoading={isLoading}
-              errorMessage={errorMessage}
-              setErrorMessage={setErrorMessage}
-            />
+            <TiltCard maxTilt={4} scale={1.008}>
+              <RepoInput
+                repoUrl={repoUrl}
+                setRepoUrl={setRepoUrl}
+                onSubmit={handleProcess}
+                isLoading={isLoading}
+                errorMessage={errorMessage}
+                setErrorMessage={setErrorMessage}
+              />
+            </TiltCard>
           )}
-        </div>
+        </Hero>
 
         {/* How It Works Pipeline */}
         <HowItWorks />

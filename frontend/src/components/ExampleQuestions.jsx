@@ -1,4 +1,5 @@
-import { IconSparkles, IconTerminal, IconArrowRight } from "./Icons";
+import { IconTerminal, IconArrowRight } from "./Icons";
+import TiltCard from "./TiltCard";
 
 const EXAMPLE_QUESTIONS = [
   {
@@ -37,34 +38,37 @@ export default function ExampleQuestions({ onSelectQuestion }) {
   return (
     <section className="example-questions-section">
       <div className="section-header text-center">
-        <span className="section-tagline">NATURAL LANGUAGE EXPLORATION</span>
-        <h2 className="section-heading">Ask Your Codebase Anything</h2>
+        <span className="section-tagline">EXPLORE QUERIES</span>
+        <h2 className="section-heading">Example Questions</h2>
         <p className="section-subheading">
-          Stop manually digging through hundreds of files. Ask targeted questions and get instant architectural context.
+          Select a sample query to inspect architecture, auth flows, and historical code changes.
         </p>
       </div>
 
       <div className="questions-grid">
         {EXAMPLE_QUESTIONS.map((item, idx) => (
-          <div
+          <TiltCard
             key={idx}
-            className="question-card"
+            maxTilt={6}
+            scale={1.02}
+            className="question-tilt-frame"
             onClick={() => onSelectQuestion && onSelectQuestion(item.question)}
           >
-            <div className="question-card-top">
-              <span className="question-cat-badge">{item.category}</span>
-              <IconSparkles size={14} className="question-card-spark" />
+            <div className="question-card">
+              <div className="question-card-top">
+                <span className="question-cat-badge">{item.category}</span>
+              </div>
+              <h4 className="question-card-text">"{item.question}"</h4>
+              <p className="question-card-desc">{item.desc}</p>
+              <div className="question-card-footer">
+                <span className="ask-prompt-text">
+                  <IconTerminal size={12} />
+                  <span>Try this query</span>
+                </span>
+                <IconArrowRight size={14} className="arrow-hover" />
+              </div>
             </div>
-            <h4 className="question-card-text">"{item.question}"</h4>
-            <p className="question-card-desc">{item.desc}</p>
-            <div className="question-card-footer">
-              <span className="ask-prompt-text">
-                <IconTerminal size={12} />
-                <span>Try this query</span>
-              </span>
-              <IconArrowRight size={14} className="arrow-hover" />
-            </div>
-          </div>
+          </TiltCard>
         ))}
       </div>
     </section>

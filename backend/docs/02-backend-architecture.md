@@ -468,4 +468,4 @@ Generate
     ↓
 Grounded Answer
 
-This architecture supports the project's objective of turning repository exploration into a natural-language conversation.
+

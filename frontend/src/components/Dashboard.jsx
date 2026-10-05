@@ -235,44 +235,46 @@ GitPython>=3.1.42
 
       {/* Main Workspace Area */}
       <main className="dashboard-main-content">
-        {activeTab === "overview" && (
-          <OverviewTab repoData={repoData} onNavigateTab={setActiveTab} />
-        )}
+        <div key={activeTab} className="tab-pane-transition-wrapper">
+          {activeTab === "overview" && (
+            <OverviewTab repoData={repoData} onNavigateTab={setActiveTab} />
+          )}
 
-        {activeTab === "code" && (
-          <div className="code-split-view">
-            <FileExplorer
-              treeData={initialTree}
-              selectedFile={selectedFile}
-              onSelectFile={(f) => {
-                setSelectedFile(f);
-                setHighlightLines(null);
-              }}
-              repoName={repoData?.repo_name || "repository"}
+          {activeTab === "code" && (
+            <div className="code-split-view">
+              <FileExplorer
+                treeData={initialTree}
+                selectedFile={selectedFile}
+                onSelectFile={(f) => {
+                  setSelectedFile(f);
+                  setHighlightLines(null);
+                }}
+                repoName={repoData?.repo_name || "repository"}
+              />
+              <CodeViewer
+                file={selectedFile}
+                repoUrl={repoData?.repo_url}
+                highlightLines={highlightLines}
+              />
+            </div>
+          )}
+
+          {activeTab === "commits" && (
+            <CommitTimeline repoData={repoData} />
+          )}
+
+          {activeTab === "contributors" && (
+            <ContributorPanel repoData={repoData} />
+          )}
+
+          {activeTab === "chat" && (
+            <ChatPanel
+              repoData={repoData}
+              initialQuestion={prefilledQuestion}
+              onOpenFile={handleOpenFileFromSource}
             />
-            <CodeViewer
-              file={selectedFile}
-              repoUrl={repoData?.repo_url}
-              highlightLines={highlightLines}
-            />
-          </div>
-        )}
-
-        {activeTab === "commits" && (
-          <CommitTimeline repoData={repoData} />
-        )}
-
-        {activeTab === "contributors" && (
-          <ContributorPanel repoData={repoData} />
-        )}
-
-        {activeTab === "chat" && (
-          <ChatPanel
-            repoData={repoData}
-            initialQuestion={prefilledQuestion}
-            onOpenFile={handleOpenFileFromSource}
-          />
-        )}
+          )}
+        </div>
       </main>
 
       {/* Bottom Status Bar */}

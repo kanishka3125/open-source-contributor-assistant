@@ -1,4 +1,4 @@
-import { IconUsers, IconGitCommit, IconFile, IconSparkles } from "./Icons";
+import { IconUsers, IconGitCommit, IconFile, IconSparkles, IconTerminal } from "./Icons";
 
 export default function ContributorPanel({ repoData }) {
   const commitsCount = repoData?.commits_processed ?? 0;
@@ -66,11 +66,11 @@ export default function ContributorPanel({ repoData }) {
         </div>
 
         <div className="contrib-feature-card">
-          <div className="feat-icon-ring pink">
-            <IconSparkles size={18} />
+          <div className="feat-icon-ring neutral">
+            <IconTerminal size={18} />
           </div>
-          <h4>AI-Assisted Contributor Queries</h4>
-          <p>Use the Ask AI tab to ask: <em>"Who contributed most to the login module?"</em></p>
+          <h4>Natural Language Contributor Queries</h4>
+          <p>Use the Q&A tab to ask: <em>"Who contributed most to the login module?"</em></p>
         </div>
       </div>
     </div>
